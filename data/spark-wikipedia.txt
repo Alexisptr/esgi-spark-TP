@@ -1,0 +1,64 @@
+Spark (ou Apache Spark2) est un framework open source de calcul distribué. Il s'agit d'un ensemble d'outils et de composants logiciels structurés selon une architecture définie. Développé à l'université de Californie à Berkeley par AMPLab3, Spark est aujourd'hui un projet de la fondation Apache. Ce produit est un cadre applicatif de traitements big data pour effectuer des analyses complexes à grande échelle.
+
+
+Sommaire
+1	Historique
+2	Utilisation
+3	Outils
+3.1	Spark SQL
+3.2	Spark Streaming
+3.3	Spark Graph X
+3.4	Spark MLlib
+4	Caractéristiques
+5	Interfaces avec d'autres langages de programmation
+6	Notes et références
+7	Articles connexes
+8	Liens externes
+Historique
+En 2009, Spark fut conçu par Matei Zaharia4 lors de son doctorat au sein de l'université de Californie à Berkeley. À l'origine son développement est une solution pour accélérer le traitement des systèmes Hadoop. Les développeurs mettent notamment en avant la rapidité du produit en termes d'exécution des tâches par rapport à MapReduce5.
+
+En 2013, transmis à la fondation Apache, Spark devient l'un des projets6 les plus actifs de cette dernière.
+
+En 2014, Spark a gagné le Daytona GraySort Contest7 dont l'objectif est de trier 100 To de données le plus rapidement possible. Ce record était préalablement détenu par Hadoop. Pour ce faire, Spark a utilisé 206 machines obtenant un temps d'exécution final de 23 minutes alors que Hadoop avait lui utilisé 2100 machines pour un temps d'exécution final de 72 minutes. La puissance de Spark fut démontrée en étant 3 fois plus rapide et en utilisant approximativement 10 fois moins de machines.
+
+Les contributeurs qui participent à son développement sont nombreux et issus d'environ 200 sociétés différentes, comme Intel, Facebook, IBM et Netflix)8. Ainsi depuis 2015 on recense plus de 1000 contributeurs9.
+
+Utilisation
+Spark réalise une lecture des données au niveau du cluster (grappe de serveurs sur un réseau), effectue toutes les opérations d'analyse nécessaires, puis écrit les résultats à ce même niveau. Malgré le fait que les tâches s'écrivent avec les langages Scala, Java et Python, il utilise au mieux ses capacités avec son langage natif, Scala10.
+
+De ce fait, là où le MapReduce de Hadoop travaille par étape, Spark peut travailler sur la totalité des données en même temps. Il est donc jusqu'à dix fois plus rapide pour le traitement en lots et jusqu'à cent fois plus rapide pour effectuer l'analyse en mémoire.
+
+Spark exécute la totalité des opérations d'analyse de données en mémoire et en temps réel. Il s'appuie sur des disques seulement lorsque sa mémoire n'est plus suffisante. À l'inverse, avec Hadoop les données sont écrites sur le disque après chacune des opérations11. Ce travail en mémoire permet de réduire les temps de latence entre les traitements, ce qui explique une telle rapidité.
+
+Cependant, Spark ne dispose pas de système de gestion de fichier qui lui est propre. Il est nécessaire de lui en fournir un, par exemple Hadoop Distributed File System, Informix, Cassandra, OpenStack Swift ou Amazon S312). Il est conseillé de l'utiliser avec Hadoop qui reste actuellement la meilleure solution globale de stockage grâce à ses outils d'administration, de sécurité et de monitoring plus avancés.
+
+En cas de panne ou de défaillance du système : les objets de données sont stockés dans ce que l'on appelle des ensembles de données distribués résilients (RDD : resilient distributed datasets) répartis sur le cluster de données permettant la récupération complète de données.
+
+Un RDD est une collection de données calculée à partir d'une source et conservée en mémoire vive (tant que la capacité le permet). L'un des avantages apportés par RDD13 se trouve dans sa capacité à conserver suffisamment d'informations sur la manière dont une partition RDD a été produite. En cas de perte d'une partition il est donc en mesure de la recalculer.
+
+Outils
+
+Outils Apache Spark14
+Spark SQL
+Spark SQL permet d'exécuter des requêtes en langages SQL pour charger et transformer des données. Le langage SQL est issu des bases de données relationnelles, mais dans Spark, il peut être utilisé pour traiter n’importe quelles données, quel que soit leur format d’origine.
+
+Spark Streaming
+Spark Streaming offre à son utilisateur un traitement des données en flux. Il utilise les données en temps-réel DStream (discretized stream) c'est-à-dire une série continue de RDD.
+
+Par exemple Twitter ou Amazon Kinesis.
+
+Spark Graph X
+Spark Graph X permet de traiter les informations issues de graphes. Graph X étend les RDD de Spark en introduisant le resilient distributed dataset graph, un multi-graphe orienté avec des propriétés attachées aux nœuds et aux arêtes.
+
+Spark MLlib
+C'est une bibliothèque d'apprentissage automatique, apparu dans la version 1.2 de Spark, qui contient tous les algorithmes et utilitaires d'apprentissage classiques, comme la classification, la régression, le clustering, le filtrage collaboratif et la réduction de dimensions, en plus des primitives d'optimisation sous-jacentes. On parle souvent d'une fouille de données par apprentissage statistique.
+
+Caractéristiques
+Aujourd'hui la notion de big data est très répandue. Spark s'adresse à un public qui recherche un traitement efficace de données trop volumineuses pour être stockées sur un seul ordinateur. Chacun des acteurs concernés recherche de plus en plus de réactivité vis-à-vis du marché d'où l'intérêt d'une analyse en temps réel15.
+
+Le mode de fonctionnement de MapReduce peut être suffisant si les besoins opérationnels et les besoins de reporting sont essentiellement statiques et s'il est possible d'attendre la fin du traitement des lots. Mais Spark apporte une valeur ajoutée par l'introduction de Spark Streaming. Cet outil permet par exemple de traiter des données remontées par capteurs dans une usine ou nécessitant une succession d'opérations. C'est le cas de la plupart des algorithmes d'apprentissage automatique qui ont besoin d'effectuer des opérations multiples. Par exemple, Spark est adapté pour les campagnes de marketing en temps réel, les recommandations de produits en ligne ou encore la cybersécurité.
+
+Interfaces avec d'autres langages de programmation
+Spark fournit par défaut des interfaces de programmation qui permettent de l’utiliser depuis les langages Scala, Java, Python, et R.
+
+Par ailleurs, le projet indépendant EclairJS16 permet d’écrire des programmes Spark en JavaScript.
