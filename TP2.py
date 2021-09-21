@@ -8,4 +8,4 @@ spark = SparkSession \
 
 text = spark.sparkContext.textFile("data/spark-wikipedia.txt")
 
-print(text.count)
+print(text.count())
