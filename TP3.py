@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import sum, col
 
 spark = SparkSession \
     .builder \
@@ -13,3 +14,17 @@ mnm_df = spark.read.format("csv") \
     .option("inferSchema", "true") \
     .load(mnm_file)
 
+# 1
+mnm_df.select("State", "Count") \
+    .groupBy("State") \
+    .agg(sum("Count").alias("Total")) \
+    .orderBy("Total", ascending=False) \
+    .show(n=10, truncate=False)
+
+# 2
+mnm_df.select("State", "Color", "Count") \
+    .where(col("State") == "CA") \
+    .groupBy("State", "Color") \
+    .agg(sum("Count").alias("Total")) \
+    .orderBy("Total", ascending=False) \
+    .show(n=10, truncate=False)
