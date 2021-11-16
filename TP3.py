@@ -24,13 +24,6 @@ mnm_df.select("State", "Count") \
 # 2
 mnm_df.select("State", "Color", "Count") \
     .where(col("State") == "CA") \
-    .groupBy("State", "Color") \
-    .agg(sum("Count").alias("Total")) \
-    .orderBy("Total", ascending=False) \
-    .show(n=10, truncate=False)
-
-mnm_df.select("State", "Color", "Count") \
-    .where(col("State") == "CA") \
     .groupBy("Color") \
     .agg(sum("Count").alias("Total")) \
     .orderBy("Total", ascending=False) \
