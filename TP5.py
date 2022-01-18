@@ -6,7 +6,7 @@ spark = SparkSession \
     .builder \
     .appName("TP5") \
     .master("local[*]") \
-    .config("spark.executor.memory", "2g") \
+    .config("spark.executor.memory", "4g") \
     .config("spark.executor.cores", 6) \
     .getOrCreate()
 
